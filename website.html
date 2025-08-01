@@ -115,7 +115,7 @@
                     <li><a href="#features">Features</a></li>
                     <li><a href="#trading">Trading</a></li>
                     <li><a href="#network">Network Rewards</a></li>
-                    <li><a href="#pricing">Account Types</a></li>
+
                     <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#contact">Support</a></li>
                 </ul>
@@ -130,7 +130,7 @@
                 <li><a href="#features" class="hover:text-primary">Features</a></li>
                 <li><a href="#trading" class="hover:text-primary">Trading</a></li>
                 <li><a href="#network" class="hover:text-primary">Network Rewards</a></li>
-                <li><a href="#pricing" class="hover:text-primary">Account Types</a></li>
+                
                 <li><a href="#testimonials" class="hover:text-primary">Testimonials</a></li>
                 <li><a href="#contact" class="hover:text-primary">Support</a></li>
             </ul>
@@ -526,97 +526,7 @@
         </div>
     </section>
 
-    <!-- Pricing Section -->
-    <section id="pricing" class="py-20 bg-base-100">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-4">Account Types</h2>
-                <p class="text-xl text-base-content/70 max-w-3xl mx-auto">Choose the account that matches your trading goals. Professional-grade execution, automated trading features, and comprehensive portfolio management for all account types.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto" x-data="{ inView: false }" x-intersect="inView = true">
-                <!-- Basic Plan -->
-                <div class="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-                     x-show="inView" 
-                     x-transition:enter="transition ease-out duration-500"
-                     x-transition:enter-start="opacity-0 transform translate-y-10"
-                     x-transition:enter-end="opacity-100 transform translate-y-0">
-                    <div class="card-body text-center">
-                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-seedling text-primary text-2xl"></i>
-                        </div>
-                        <h3 class="card-title text-2xl justify-center">Starter</h3>
-                        <div class="text-4xl font-bold text-primary mb-4">$99</div>
-                        <ul class="text-left space-y-3 mb-6">
-                            <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Spara Xhot Trading</li>
-                            <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Basic Trading Features</li>
-                            <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Market Analysis</li>
-                            <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Real-time Charts</li>
-                            <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Email Support</li>
-                        </ul>
-                        <div class="card-actions justify-center">
-                            <button class="btn btn-primary btn-block">Get Started</button>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Professional Plan -->
-                <div class="card bg-primary text-primary-content shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 relative"
-                     x-show="inView" 
-                     x-transition:enter="transition ease-out duration-500 delay-200"
-                     x-transition:enter-start="opacity-0 transform translate-y-10"
-                     x-transition:enter-end="opacity-100 transform translate-y-0">
-                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                        <div class="badge badge-secondary badge-lg">Most Popular</div>
-                    </div>
-                    <div class="card-body text-center">
-                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-rocket text-white text-2xl"></i>
-                        </div>
-                        <h3 class="card-title text-2xl justify-center text-white">Professional</h3>
-                        <div class="text-4xl font-bold text-white mb-4">$299</div>
-                        <ul class="text-left space-y-3 mb-6 text-white/90">
-                            <li class="flex items-center"><i class="fas fa-check text-secondary mr-2"></i> Advanced Trading Features</li>
-                            <li class="flex items-center"><i class="fas fa-check text-secondary mr-2"></i> Automated Trading</li>
-                            <li class="flex items-center"><i class="fas fa-check text-secondary mr-2"></i> Advanced Portfolio Tools</li>
-                            <li class="flex items-center"><i class="fas fa-check text-secondary mr-2"></i> Real-time Analytics</li>
-                            <li class="flex items-center"><i class="fas fa-check text-secondary mr-2"></i> Priority Support</li>
-                            <li class="flex items-center"><i class="fas fa-check text-secondary mr-2"></i> Team Management</li>
-                        </ul>
-                        <div class="card-actions justify-center">
-                            <button class="btn btn-secondary btn-block">Start Professional</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Enterprise Plan -->
-                <div class="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
-                     x-show="inView" 
-                     x-transition:enter="transition ease-out duration-500 delay-400"
-                     x-transition:enter-start="opacity-0 transform translate-y-10"
-                     x-transition:enter-end="opacity-100 transform translate-y-0">
-                    <div class="card-body text-center">
-                        <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                            <i class="fas fa-crown text-secondary text-2xl"></i>
-                        </div>
-                        <h3 class="card-title text-2xl justify-center">Enterprise</h3>
-                        <div class="text-4xl font-bold text-secondary mb-4">$599</div>
-                        <ul class="text-left space-y-3 mb-6">
-                            <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Enterprise Trading Access</li>
-                            <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Multi-Account Management</li>
-                            <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Premium Trading Tools</li>
-                            <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Advanced Risk Management</li>
-                            <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Dedicated Account Manager</li>
-                            <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Custom Trading Strategies</li>
-                        </ul>
-                        <div class="card-actions justify-center">
-                            <button class="btn btn-secondary btn-block">Go Enterprise</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Testimonials -->
     <section id="testimonials" class="py-20 bg-base-200">
@@ -864,7 +774,7 @@
             <a href="#features" class="link link-hover">Features</a>
             <a href="#trading" class="link link-hover">Trading</a>
             <a href="#network" class="link link-hover">Network Rewards</a>
-            <a href="#pricing" class="link link-hover">Account Types</a>
+
             <a href="#testimonials" class="link link-hover">Testimonials</a>
             <a href="#contact" class="link link-hover">Support</a>
         </nav>
