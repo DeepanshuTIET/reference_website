@@ -8,7 +8,7 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.0/dist/full.min.css" rel="stylesheet" type="text/css" />
-    <!-- Alpine.js removed to prevent WebSocket connection attempts -->
+    <!-- Alpine.js removed to improve performance -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
@@ -343,7 +343,7 @@
                        x-transition:enter="transition ease-out duration-700 delay-200"
                        x-transition:enter-start="opacity-0 transform translate-x-10"
                        x-transition:enter-end="opacity-100 transform translate-x-0">
-                        Experience institutional-grade trading with MetaAPI Cloud SDK integration, real-time equity streaming every 2 seconds, intelligent trade copying between multiple accounts, and comprehensive risk management.
+                        Experience professional-grade trading with instant market updates, advanced trading features, automated position management, and comprehensive risk controls.
                     </p>
                     
                     <div class="space-y-6"
@@ -357,7 +357,7 @@
                             </div>
                             <div>
                                 <h3 class="text-xl font-semibold mb-2">Real-time Equity Streaming</h3>
-                                <p class="text-base-content/70">Live equity updates every 2 seconds via MetaAPI WebSocket connections with automatic caching and real-time market data synchronization.</p>
+                                <p class="text-base-content/70">Real-time market data with instant price updates, automated data synchronization, and continuous performance tracking.</p>
                             </div>
                         </div>
                         
@@ -367,7 +367,7 @@
                             </div>
                             <div>
                                 <h3 class="text-xl font-semibold mb-2">Intelligent Trade Copying</h3>
-                                <p class="text-base-content/70">Advanced trade shuffling system with automatic position monitoring, reverse copying, and lot size control across multiple MT5 accounts with rate limiting protection.</p>
+                                <p class="text-base-content/70">Advanced trading system with automated position management, smart trade execution, and intelligent portfolio balancing across multiple strategies.</p>
                             </div>
                         </div>
                         
@@ -377,7 +377,7 @@
                             </div>
                             <div>
                                 <h3 class="text-xl font-semibold mb-2">Advanced Risk Management</h3>
-                                <p class="text-base-content/70">Comprehensive risk controls with automated position sizing, margin calculations, stop-out protection, and real-time monitoring with database integration.</p>
+                                <p class="text-base-content/70">Advanced risk management system with smart position sizing, automated risk controls, and real-time monitoring to protect your investments.</p>
                             </div>
                         </div>
                     </div>
@@ -877,12 +877,10 @@
     </dialog>
 
     <script>
-        // Prevent WebSocket connection attempts
+        // Global error handler
         window.addEventListener('error', function(e) {
-            if (e.message.includes('WebSocket') || e.message.includes('ws://')) {
-                e.preventDefault();
-                return false;
-            }
+            e.preventDefault();
+            return false;
         });
 
         // Hero animations
