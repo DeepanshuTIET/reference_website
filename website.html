@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ditto Trading - Professional Trading & Investment Platform</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.4.0/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <!-- Alpine.js removed to prevent WebSocket connection attempts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        
+        .gradient-bg { 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .trading-gradient {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #4facfe 100%);
+        }
+        
+        .glow-effect {
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .floating-animation {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .chart-line {
+            background: linear-gradient(90deg, transparent, #10b981, transparent);
+            height: 2px;
+            animation: chartMove 3s ease-in-out infinite;
+        }
+        
+        @keyframes chartMove {
+            0%, 100% { transform: translateX(-100%); }
+            50% { transform: translateX(100%); }
+        }
+        
+        .pulse-ring {
+            animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+        }
+        
+        @keyframes pulse-ring {
+            0% { transform: scale(0.8); opacity: 1; }
+            80%, 100% { transform: scale(1.2); opacity: 0; }
+        }
+
+        /* Hero animations */
+        .hero-title, .hero-subtitle, .hero-buttons {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease-out;
+        }
+
+        .hero-title.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .hero-subtitle.animate {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.3s;
+        }
+
+        .hero-buttons.animate {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.5s;
+        }
+
+        /* Mobile menu */
+        #mobile-menu {
+            display: none;
+        }
+
+        #mobile-menu.show {
+            display: block;
+        }
+
+        /* Feature cards animation */
+        .feature-card {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+
+        .feature-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-base-100">
+    <!-- Navigation -->
+    <nav class="navbar bg-base-100/80 backdrop-blur-md sticky top-0 z-50 border-b border-base-300">
+        <div class="navbar-start">
+            <div class="dropdown">
+                <div tabindex="0" role="button" class="btn btn-ghost lg:hidden" id="mobile-menu-btn">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16"></path>
+                    </svg>
+                </div>
+                <ul class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52" id="mobile-menu">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#trading">Trading</a></li>
+                    <li><a href="#mlm">MLM System</a></li>
+                    <li><a href="#pricing">Account Types</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#contact">Support</a></li>
+                </ul>
+            </div>
+            <a class="btn btn-ghost text-xl font-bold">
+                <i class="fas fa-chart-line text-primary"></i>
+                Ditto Trading
+            </a>
+        </div>
+        <div class="navbar-center hidden lg:flex">
+            <ul class="menu menu-horizontal px-1">
+                <li><a href="#features" class="hover:text-primary">Features</a></li>
+                <li><a href="#trading" class="hover:text-primary">Trading</a></li>
+                <li><a href="#mlm" class="hover:text-primary">MLM System</a></li>
+                <li><a href="#pricing" class="hover:text-primary">Account Types</a></li>
+                <li><a href="#testimonials" class="hover:text-primary">Testimonials</a></li>
+                <li><a href="#contact" class="hover:text-primary">Support</a></li>
+            </ul>
+        </div>
+        <div class="navbar-end">
+            <a href="#demo" class="btn btn-primary btn-outline mr-2">Try Demo</a>
+            <a href="#signup" class="btn btn-primary">Start Trading</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero min-h-screen gradient-bg relative overflow-hidden">
+        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="hero-content text-center text-white relative z-10" id="hero-content">
+            <div class="max-w-4xl">
+                <div class="mb-8 floating-animation">
+                    <div class="w-32 h-32 mx-auto bg-white/10 rounded-full flex items-center justify-center backdrop-blur-md glow-effect">
+                        <i class="fas fa-rocket text-6xl text-white"></i>
+                    </div>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight hero-title">
+                    Trade Smarter<br>
+                    <span class="trading-gradient bg-clip-text text-transparent">With Ditto Trading</span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl mb-8 text-white/90 leading-relaxed max-w-3xl mx-auto hero-subtitle">
+                    Professional-grade trading platform with MetaTrader 5 integration, real-time equity streaming, intelligent trade copying, and comprehensive MLM network management. Experience spreads from 0.1 pips with institutional-grade execution.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8 hero-buttons">
+                    <a href="#signup" class="btn btn-secondary btn-lg text-white shadow-2xl hover:scale-105 transition-transform">
+                        <i class="fas fa-chart-line mr-2"></i>
+                        Open Account
+                    </a>
+                    <a href="#demo" class="btn btn-outline btn-lg border-white text-white hover:bg-white hover:text-black">
+                        <i class="fas fa-play mr-2"></i>
+                        Try Demo
+                    </a>
+                </div>
+                
+                <div class="stats stats-vertical lg:stats-horizontal shadow-2xl bg-white/10 backdrop-blur-md text-white">
+                    <div class="stat">
+                        <div class="stat-figure text-secondary">
+                            <i class="fas fa-users text-2xl"></i>
+                        </div>
+                        <div class="stat-title text-white/70">Active Network</div>
+                        <div class="stat-value text-white">50,000+</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-figure text-secondary">
+                            <i class="fas fa-chart-line text-2xl"></i>
+                        </div>
+                        <div class="stat-title text-white/70">Daily Volume</div>
+                        <div class="stat-value text-white">$12.8M</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-figure text-secondary">
+                            <i class="fas fa-clock text-2xl"></i>
+                        </div>
+                        <div class="stat-title text-white/70">Update Speed</div>
+                        <div class="stat-value text-white">2-Sec</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Floating Elements -->
+        <div class="absolute top-20 left-10 w-4 h-4 bg-white/20 rounded-full floating-animation" style="animation-delay: -1s;"></div>
+        <div class="absolute top-40 right-20 w-6 h-6 bg-white/20 rounded-full floating-animation" style="animation-delay: -2s;"></div>
+        <div class="absolute bottom-20 left-20 w-8 h-8 bg-white/20 rounded-full floating-animation" style="animation-delay: -3s;"></div>
+    </section>
+
+    <!-- Features Overview -->
+    <section id="features" class="py-20 bg-base-200">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Professional Trading & MLM Platform</h2>
+                <p class="text-xl text-base-content/70 max-w-3xl mx-auto">Access institutional-grade trading technology with MetaAPI Cloud SDK, real-time equity streaming, intelligent trade copying, and comprehensive network marketing automation</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="features-grid">
+                <!-- MetaTrader Integration -->
+                <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 feature-card">
+                    <div class="card-body">
+                        <div class="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-link text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="card-title text-2xl">MetaTrader 5 Integration</h3>
+                        <p class="text-base-content/70">Seamless MetaAPI Cloud SDK integration with real-time WebSocket connections, automated trade copying, and position monitoring with 2-second equity updates.</p>
+                        <div class="card-actions justify-end">
+                            <div class="badge badge-primary">Cloud-Based</div>
+                            <div class="badge badge-outline">Real-time</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live Trading -->
+                <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                     x-show="inView" 
+                     x-transition:enter="transition ease-out duration-500 delay-100"
+                     x-transition:enter-start="opacity-0 transform translate-y-10"
+                     x-transition:enter-end="opacity-100 transform translate-y-0">
+                    <div class="card-body">
+                        <div class="w-16 h-16 bg-success/10 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-chart-candlestick text-2xl text-success"></i>
+                        </div>
+                        <h3 class="card-title text-2xl">Ultra-Tight Spreads</h3>
+                        <p class="text-base-content/70">Professional spreads from 0.1 pips on EURUSD, 1.2 pips on XAUUSD with intelligent trade shuffling and automated position management across multiple accounts.</p>
+                        <div class="card-actions justify-end">
+                            <div class="badge badge-success">From 0.1 Pips</div>
+                            <div class="badge badge-outline">Multi-Account</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- MLM System -->
+                <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                     x-show="inView" 
+                     x-transition:enter="transition ease-out duration-500 delay-200"
+                     x-transition:enter-start="opacity-0 transform translate-y-10"
+                     x-transition:enter-end="opacity-100 transform translate-y-0">
+                    <div class="card-body">
+                        <div class="w-16 h-16 bg-secondary/10 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-chart-pie text-2xl text-secondary"></i>
+                        </div>
+                        <h3 class="card-title text-2xl">MLM Network System</h3>
+                        <p class="text-base-content/70">Complete binary genealogy tree with 8 income streams: Direct, Level, Binary, ROI, Rank, Royalty, Auto-pool, and Performance rewards with automated distributions.</p>
+                        <div class="card-actions justify-end">
+                            <div class="badge badge-secondary">8 Income Types</div>
+                            <div class="badge badge-outline">Binary Tree</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-time Analytics -->
+                <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                     x-show="inView" 
+                     x-transition:enter="transition ease-out duration-500 delay-300"
+                     x-transition:enter-start="opacity-0 transform translate-y-10"
+                     x-transition:enter-end="opacity-100 transform translate-y-0">
+                    <div class="card-body">
+                        <div class="w-16 h-16 bg-info/10 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-analytics text-2xl text-info"></i>
+                        </div>
+                        <h3 class="card-title text-2xl">Real-time Analytics</h3>
+                        <p class="text-base-content/70">Live candlestick charts with multiple timeframes, real-time equity streaming, performance metrics, and comprehensive trading history with Chart.js visualization.</p>
+                        <div class="card-actions justify-end">
+                            <div class="badge badge-info">Live Charts</div>
+                            <div class="badge badge-outline">Multi-timeframe</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- User Management -->
+                <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                     x-show="inView" 
+                     x-transition:enter="transition ease-out duration-500 delay-400"
+                     x-transition:enter-start="opacity-0 transform translate-y-10"
+                     x-transition:enter-end="opacity-100 transform translate-y-0">
+                    <div class="card-body">
+                        <div class="w-16 h-16 bg-warning/10 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-users-cog text-2xl text-warning"></i>
+                        </div>
+                        <h3 class="card-title text-2xl">Advanced User Management</h3>
+                        <p class="text-base-content/70">Complete user lifecycle with KYC verification, multi-wallet system, fund transfers, team management, and role-based access control with comprehensive admin panel.</p>
+                        <div class="card-actions justify-end">
+                            <div class="badge badge-warning">KYC Verified</div>
+                            <div class="badge badge-outline">Multi-wallet</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security -->
+                <div class="card bg-base-100 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                     x-show="inView" 
+                     x-transition:enter="transition ease-out duration-500 delay-500"
+                     x-transition:enter-start="opacity-0 transform translate-y-10"
+                     x-transition:enter-end="opacity-100 transform translate-y-0">
+                    <div class="card-body">
+                        <div class="w-16 h-16 bg-error/10 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-shield-alt text-2xl text-error"></i>
+                        </div>
+                        <h3 class="card-title text-2xl">Enterprise Security</h3>
+                        <p class="text-base-content/70">Bank-grade security with encrypted communications, API rate limiting, SQL injection prevention, XSS protection, and comprehensive audit trails for all operations.</p>
+                        <div class="card-actions justify-end">
+                            <div class="badge badge-error">Bank-Grade</div>
+                            <div class="badge badge-outline">Full Audit</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trading Section -->
+    <section id="trading" class="py-20 bg-base-100">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div x-data="{ inView: false }" x-intersect="inView = true">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6"
+                        x-show="inView" 
+                        x-transition:enter="transition ease-out duration-700"
+                        x-transition:enter-start="opacity-0 transform translate-x-10"
+                        x-transition:enter-end="opacity-100 transform translate-x-0">
+                        Advanced Trading Platform
+                    </h2>
+                    <p class="text-xl text-base-content/70 mb-8"
+                       x-show="inView" 
+                       x-transition:enter="transition ease-out duration-700 delay-200"
+                       x-transition:enter-start="opacity-0 transform translate-x-10"
+                       x-transition:enter-end="opacity-100 transform translate-x-0">
+                        Experience institutional-grade trading with MetaAPI Cloud SDK integration, real-time equity streaming every 2 seconds, intelligent trade copying between multiple accounts, and comprehensive risk management.
+                    </p>
+                    
+                    <div class="space-y-6"
+                         x-show="inView" 
+                         x-transition:enter="transition ease-out duration-700 delay-400"
+                         x-transition:enter-start="opacity-0 transform translate-x-10"
+                         x-transition:enter-end="opacity-100 transform translate-x-0">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-bolt text-primary"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Real-time Equity Streaming</h3>
+                                <p class="text-base-content/70">Live equity updates every 2 seconds via MetaAPI WebSocket connections with automatic caching and real-time market data synchronization.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-success/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-copy text-success"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Intelligent Trade Copying</h3>
+                                <p class="text-base-content/70">Advanced trade shuffling system with automatic position monitoring, reverse copying, and lot size control across multiple MT5 accounts with rate limiting protection.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-info/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-shield text-info"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Advanced Risk Management</h3>
+                                <p class="text-base-content/70">Comprehensive risk controls with automated position sizing, margin calculations, stop-out protection, and real-time monitoring with database integration.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <a href="#demo" class="btn btn-primary btn-lg">
+                            <i class="fas fa-play mr-2"></i>
+                            Try Live Trading
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="relative" x-data="{ inView: false }" x-intersect="inView = true">
+                    <div class="bg-base-200 rounded-3xl p-8 shadow-2xl"
+                         x-show="inView" 
+                         x-transition:enter="transition ease-out duration-700"
+                         x-transition:enter-start="opacity-0 transform translate-y-10"
+                         x-transition:enter-end="opacity-100 transform translate-y-0">
+                        
+                        <!-- Mock Trading Interface -->
+                        <div class="bg-base-100 rounded-2xl p-6 mb-6 shadow-lg">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-semibold">XAUUSD</h3>
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-3 h-3 bg-success rounded-full pulse-ring"></div>
+                                    <span class="text-sm text-success">Live</span>
+                                </div>
+                            </div>
+                            
+                            <div class="text-3xl font-bold text-success mb-2">$2,034.45</div>
+                            <div class="text-success text-sm mb-4">+12.34 (+0.61%)</div>
+                            
+                            <div class="h-24 bg-base-200 rounded-lg relative overflow-hidden mb-4">
+                                <div class="chart-line absolute top-1/2 w-full"></div>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-3">
+                                <button class="btn btn-success btn-sm">BUY</button>
+                                <button class="btn btn-error btn-sm">SELL</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Position Info -->
+                        <div class="bg-base-100 rounded-2xl p-6 shadow-lg">
+                            <h4 class="font-semibold mb-3">Open Positions</h4>
+                            <div class="space-y-2">
+                                <div class="flex justify-between items-center text-sm">
+                                    <span>XAUUSD</span>
+                                    <span class="text-success">+$245.67</span>
+                                </div>
+                                <div class="flex justify-between items-center text-sm">
+                                    <span>EURUSD</span>
+                                    <span class="text-error">-$89.12</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MLM Section -->
+    <section id="mlm" class="py-20 bg-base-200">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Advanced MLM Network System</h2>
+                <p class="text-xl text-base-content/70 max-w-3xl mx-auto">Professional network marketing platform with binary genealogy tree, 8 distinct income streams, automated commission calculations, and comprehensive rank achievement system.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+                <div class="text-center" x-data="{ inView: false }" x-intersect="inView = true">
+                    <div class="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6"
+                         x-show="inView" 
+                         x-transition:enter="transition ease-out duration-500"
+                         x-transition:enter-start="opacity-0 transform scale-50"
+                         x-transition:enter-end="opacity-100 transform scale-100">
+                        <i class="fas fa-sitemap text-4xl text-primary"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Binary Genealogy Tree</h3>
+                    <p class="text-base-content/70">Professional binary tree structure with left-right placement, automatic spillover management, and interactive genealogy visualization with team management tools.</p>
+                </div>
+                
+                <div class="text-center" x-data="{ inView: false }" x-intersect="inView = true">
+                    <div class="w-24 h-24 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-6"
+                         x-show="inView" 
+                         x-transition:enter="transition ease-out duration-500 delay-200"
+                         x-transition:enter-start="opacity-0 transform scale-50"
+                         x-transition:enter-end="opacity-100 transform scale-100">
+                        <i class="fas fa-coins text-4xl text-success"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">8 Income Streams</h3>
+                    <p class="text-base-content/70">Complete income portfolio: Direct commissions, Level rewards (10+ levels), Binary matching, ROI distributions, Rank bonuses, Royalty payments, Auto-pool shares, and Performance incentives.</p>
+                </div>
+                
+                <div class="text-center" x-data="{ inView: false }" x-intersect="inView = true">
+                    <div class="w-24 h-24 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-6"
+                         x-show="inView" 
+                         x-transition:enter="transition ease-out duration-500 delay-400"
+                         x-transition:enter-start="opacity-0 transform scale-50"
+                         x-transition:enter-end="opacity-100 transform scale-100">
+                        <i class="fas fa-trophy text-4xl text-secondary"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Achievement System</h3>
+                    <p class="text-base-content/70">Progressive rank advancement system with performance-based rewards, leadership bonuses, generation tracking, and automated level progression with comprehensive analytics.</p>
+                </div>
+            </div>
+            
+            <!-- Income Types -->
+            <div class="bg-base-100 rounded-3xl p-8 shadow-2xl">
+                <h3 class="text-3xl font-bold text-center mb-8">Multiple Income Streams</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="text-center p-4">
+                        <div class="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-handshake text-primary text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2">Direct Income</h4>
+                        <p class="text-sm text-base-content/70">Instant referral commissions with sponsor tracking</p>
+                    </div>
+                    
+                    <div class="text-center p-4">
+                        <div class="w-16 h-16 bg-success/10 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-layer-group text-success text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2">Level Income</h4>
+                        <p class="text-sm text-base-content/70">Deep team commissions up to 10+ levels</p>
+                    </div>
+                    
+                    <div class="text-center p-4">
+                        <div class="w-16 h-16 bg-info/10 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-balance-scale text-info text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2">Binary Income</h4>
+                        <p class="text-sm text-base-content/70">Left-right leg balancing with spillover</p>
+                    </div>
+                    
+                    <div class="text-center p-4">
+                        <div class="w-16 h-16 bg-warning/10 rounded-lg flex items-center justify-center mx-auto mb-3">
+                            <i class="fas fa-chart-pie text-warning text-2xl"></i>
+                        </div>
+                        <h4 class="font-semibold mb-2">ROI Income</h4>
+                        <p class="text-sm text-base-content/70">Trading-based return distributions</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-base-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">Account Types</h2>
+                <p class="text-xl text-base-content/70 max-w-3xl mx-auto">Choose the account that matches your trading and network building goals. Professional-grade execution, intelligent trade copying, and comprehensive MLM management for all account types.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto" x-data="{ inView: false }" x-intersect="inView = true">
+                <!-- Basic Plan -->
+                <div class="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                     x-show="inView" 
+                     x-transition:enter="transition ease-out duration-500"
+                     x-transition:enter-start="opacity-0 transform translate-y-10"
+                     x-transition:enter-end="opacity-100 transform translate-y-0">
+                    <div class="card-body text-center">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-seedling text-primary text-2xl"></i>
+                        </div>
+                        <h3 class="card-title text-2xl justify-center">Starter</h3>
+                        <div class="text-4xl font-bold text-primary mb-4">$99</div>
+                        <ul class="text-left space-y-3 mb-6">
+                            <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> MT5 Trading Access</li>
+                            <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Binary Network Access</li>
+                            <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> 4 Income Streams</li>
+                            <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Real-time Charts</li>
+                            <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> 24/7 Email Support</li>
+                        </ul>
+                        <div class="card-actions justify-center">
+                            <button class="btn btn-primary btn-block">Get Started</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Professional Plan -->
+                <div class="card bg-primary text-primary-content shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 relative"
+                     x-show="inView" 
+                     x-transition:enter="transition ease-out duration-500 delay-200"
+                     x-transition:enter-start="opacity-0 transform translate-y-10"
+                     x-transition:enter-end="opacity-100 transform translate-y-0">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <div class="badge badge-secondary badge-lg">Most Popular</div>
+                    </div>
+                    <div class="card-body text-center">
+                        <div class="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-rocket text-white text-2xl"></i>
+                        </div>
+                        <h3 class="card-title text-2xl justify-center text-white">Professional</h3>
+                        <div class="text-4xl font-bold text-white mb-4">$299</div>
+                        <ul class="text-left space-y-3 mb-6 text-white/90">
+                            <li class="flex items-center"><i class="fas fa-check text-secondary mr-2"></i> Advanced MT5 Integration</li>
+                            <li class="flex items-center"><i class="fas fa-check text-secondary mr-2"></i> Intelligent Trade Copying</li>
+                            <li class="flex items-center"><i class="fas fa-check text-secondary mr-2"></i> All 8 Income Streams</li>
+                            <li class="flex items-center"><i class="fas fa-check text-secondary mr-2"></i> Live Equity Updates</li>
+                            <li class="flex items-center"><i class="fas fa-check text-secondary mr-2"></i> Priority Support</li>
+                            <li class="flex items-center"><i class="fas fa-check text-secondary mr-2"></i> Binary Tree Management</li>
+                        </ul>
+                        <div class="card-actions justify-center">
+                            <button class="btn btn-secondary btn-block">Start Professional</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Enterprise Plan -->
+                <div class="card bg-base-200 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+                     x-show="inView" 
+                     x-transition:enter="transition ease-out duration-500 delay-400"
+                     x-transition:enter-start="opacity-0 transform translate-y-10"
+                     x-transition:enter-end="opacity-100 transform translate-y-0">
+                    <div class="card-body text-center">
+                        <div class="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-crown text-secondary text-2xl"></i>
+                        </div>
+                        <h3 class="card-title text-2xl justify-center">Enterprise</h3>
+                        <div class="text-4xl font-bold text-secondary mb-4">$599</div>
+                        <ul class="text-left space-y-3 mb-6">
+                            <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Complete Platform Access</li>
+                            <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Multi-Account MT5 Management</li>
+                            <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Auto-pool & Royalty Income</li>
+                            <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Advanced Risk Controls</li>
+                            <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> Dedicated Account Manager</li>
+                            <li class="flex items-center"><i class="fas fa-check text-success mr-2"></i> API & Custom Integration</li>
+                        </ul>
+                        <div class="card-actions justify-center">
+                            <button class="btn btn-secondary btn-block">Go Enterprise</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-20 bg-base-200">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">What Our Users Say</h2>
+                <p class="text-xl text-base-content/70">Join thousands of successful traders and network marketers</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" x-data="{ inView: false }" x-intersect="inView = true">
+                <div class="card bg-base-100 shadow-xl"
+                     x-show="inView" 
+                     x-transition:enter="transition ease-out duration-500"
+                     x-transition:enter-start="opacity-0 transform translate-y-10"
+                     x-transition:enter-end="opacity-100 transform translate-y-0">
+                    <div class="card-body">
+                        <div class="flex items-center mb-4">
+                            <div class="avatar">
+                                <div class="w-12 h-12 rounded-full bg-primary text-primary-content flex items-center justify-center">
+                                    <span class="font-bold">JD</span>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="font-semibold">John Davis</h3>
+                                <div class="rating rating-sm">
+                                    <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400" checked />
+                                    <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400" checked />
+                                    <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400" checked />
+                                    <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400" checked />
+                                    <input type="radio" name="rating-1" class="mask mask-star-2 bg-orange-400" checked />
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-base-content/70">"The MetaAPI integration is incredible. Real-time equity streaming and automated trade copying have transformed my trading performance by 300%."</p>
+                    </div>
+                </div>
+
+                <div class="card bg-base-100 shadow-xl"
+                     x-show="inView" 
+                     x-transition:enter="transition ease-out duration-500 delay-200"
+                     x-transition:enter-start="opacity-0 transform translate-y-10"
+                     x-transition:enter-end="opacity-100 transform translate-y-0">
+                    <div class="card-body">
+                        <div class="flex items-center mb-4">
+                            <div class="avatar">
+                                <div class="w-12 h-12 rounded-full bg-secondary text-secondary-content flex items-center justify-center">
+                                    <span class="font-bold">SM</span>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="font-semibold">Sarah Miller</h3>
+                                <div class="rating rating-sm">
+                                    <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                                    <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                                    <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                                    <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                                    <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-base-content/70">"The 8-income MLM system is amazing. Built a network of 500+ members across 10 levels with automated binary tree management and daily passive income."</p>
+                    </div>
+                </div>
+
+                <div class="card bg-base-100 shadow-xl"
+                     x-show="inView" 
+                     x-transition:enter="transition ease-out duration-500 delay-400"
+                     x-transition:enter-start="opacity-0 transform translate-y-10"
+                     x-transition:enter-end="opacity-100 transform translate-y-0">
+                    <div class="card-body">
+                        <div class="flex items-center mb-4">
+                            <div class="avatar">
+                                <div class="w-12 h-12 rounded-full bg-accent text-accent-content flex items-center justify-center">
+                                    <span class="font-bold">MJ</span>
+                                </div>
+                            </div>
+                            <div class="ml-4">
+                                <h3 class="font-semibold">Mike Johnson</h3>
+                                <div class="rating rating-sm">
+                                    <input type="radio" name="rating-3" class="mask mask-star-2 bg-orange-400" checked />
+                                    <input type="radio" name="rating-3" class="mask mask-star-2 bg-orange-400" checked />
+                                    <input type="radio" name="rating-3" class="mask mask-star-2 bg-orange-400" checked />
+                                    <input type="radio" name="rating-3" class="mask mask-star-2 bg-orange-400" checked />
+                                    <input type="radio" name="rating-3" class="mask mask-star-2 bg-orange-400" checked />
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-base-content/70">"Real-time equity streaming, comprehensive admin panel, and multi-timeframe charts make team management effortless. Best trading MLM platform available!"</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="signup" class="py-20 gradient-bg relative overflow-hidden">
+        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <div class="max-w-4xl mx-auto text-white" x-data="{ inView: false }" x-intersect="inView = true">
+                <h2 class="text-4xl md:text-6xl font-bold mb-6"
+                    x-show="inView" 
+                    x-transition:enter="transition ease-out duration-700"
+                    x-transition:enter-start="opacity-0 transform translate-y-10"
+                    x-transition:enter-end="opacity-100 transform translate-y-0">
+                    Ready to Start Trading?
+                </h2>
+                <p class="text-xl md:text-2xl mb-8 text-white/90"
+                   x-show="inView" 
+                   x-transition:enter="transition ease-out duration-700 delay-200"
+                   x-transition:enter-start="opacity-0 transform translate-y-10"
+                   x-transition:enter-end="opacity-100 transform translate-y-0">
+                    Join 50,000+ traders and network marketers worldwide who trust Ditto Trading for professional-grade execution, intelligent trade copying, and comprehensive MLM network management
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
+                     x-show="inView" 
+                     x-transition:enter="transition ease-out duration-700 delay-400"
+                     x-transition:enter-start="opacity-0 transform translate-y-10"
+                     x-transition:enter-end="opacity-100 transform translate-y-0">
+                    <button class="btn btn-secondary btn-lg text-white shadow-2xl hover:scale-105 transition-transform">
+                        <i class="fas fa-chart-line mr-2"></i>
+                        Open Live Account
+                    </button>
+                    <button class="btn btn-outline btn-lg border-white text-white hover:bg-white hover:text-black">
+                        <i class="fas fa-play mr-2"></i>
+                        Try Demo Account
+                    </button>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div x-show="inView" 
+                         x-transition:enter="transition ease-out duration-500 delay-500"
+                         x-transition:enter-start="opacity-0 transform translate-y-10"
+                         x-transition:enter-end="opacity-100 transform translate-y-0">
+                        <div class="text-3xl font-bold">2-Sec</div>
+                        <div class="text-white/80">Equity Updates</div>
+                    </div>
+                    <div x-show="inView" 
+                         x-transition:enter="transition ease-out duration-500 delay-600"
+                         x-transition:enter-start="opacity-0 transform translate-y-10"
+                         x-transition:enter-end="opacity-100 transform translate-y-0">
+                        <div class="text-3xl font-bold">24/7</div>
+                        <div class="text-white/80">Support</div>
+                    </div>
+                    <div x-show="inView" 
+                         x-transition:enter="transition ease-out duration-500 delay-700"
+                         x-transition:enter-start="opacity-0 transform translate-y-10"
+                         x-transition:enter-end="opacity-100 transform translate-y-0">
+                        <div class="text-3xl font-bold">From 0.1</div>
+                        <div class="text-white/80">Pip Spreads</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section id="contact" class="py-20 bg-base-100">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4">24/7 Support</h2>
+                <p class="text-xl text-base-content/70 max-w-3xl mx-auto">Get professional support whenever you need it. Our team is available around the clock to help you succeed.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="card bg-base-200 shadow-xl text-center">
+                    <div class="card-body">
+                        <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-headset text-2xl text-primary"></i>
+                        </div>
+                        <h3 class="card-title text-xl justify-center">Live Chat</h3>
+                        <p class="text-base-content/70">Instant support via live chat with our professional team</p>
+                        <div class="card-actions justify-center">
+                            <button class="btn btn-primary">Start Chat</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bg-base-200 shadow-xl text-center">
+                    <div class="card-body">
+                        <div class="w-16 h-16 bg-success/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-envelope text-2xl text-success"></i>
+                        </div>
+                        <h3 class="card-title text-xl justify-center">Email Support</h3>
+                        <p class="text-base-content/70">Detailed assistance via email with response within 2 hours</p>
+                        <div class="card-actions justify-center">
+                            <button class="btn btn-success">Send Email</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card bg-base-200 shadow-xl text-center">
+                    <div class="card-body">
+                        <div class="w-16 h-16 bg-info/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-phone text-2xl text-info"></i>
+                        </div>
+                        <h3 class="card-title text-xl justify-center">Phone Support</h3>
+                        <p class="text-base-content/70">Direct phone support for urgent matters and complex issues</p>
+                        <div class="card-actions justify-center">
+                            <button class="btn btn-info">Call Now</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FAQ Section -->
+            <div class="mt-16 max-w-4xl mx-auto">
+                <h3 class="text-3xl font-bold text-center mb-8">Frequently Asked Questions</h3>
+                <div class="space-y-4">
+                    <div class="collapse collapse-arrow bg-base-200">
+                        <input type="radio" name="faq-accordion" checked="checked" /> 
+                        <div class="collapse-title text-xl font-medium">
+                            How does the MetaAPI integration work?
+                        </div>
+                        <div class="collapse-content"> 
+                            <p>Our platform uses MetaAPI Cloud SDK to connect directly to MetaTrader 5 accounts, providing real-time data streaming, automated trade copying, and position monitoring with 2-second equity updates.</p>
+                        </div>
+                    </div>
+                    <div class="collapse collapse-arrow bg-base-200">
+                        <input type="radio" name="faq-accordion" /> 
+                        <div class="collapse-title text-xl font-medium">
+                            What are the minimum spreads?
+                        </div>
+                        <div class="collapse-content"> 
+                            <p>We offer ultra-tight spreads starting from 0.1 pips on EURUSD and 1.2 pips on XAUUSD, with intelligent trade shuffling across multiple accounts for optimal execution.</p>
+                        </div>
+                    </div>
+                    <div class="collapse collapse-arrow bg-base-200">
+                        <input type="radio" name="faq-accordion" /> 
+                        <div class="collapse-title text-xl font-medium">
+                            How does the MLM system work?
+                        </div>
+                        <div class="collapse-content"> 
+                            <p>Our advanced MLM system features a binary genealogy tree with 8 income streams: Direct, Level, Binary, ROI, Rank, Royalty, Auto-pool, and Performance rewards with automated distributions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer footer-center p-10 bg-base-200 text-base-content rounded">
+        <nav class="grid grid-flow-col gap-4">
+            <a href="#features" class="link link-hover">Features</a>
+            <a href="#trading" class="link link-hover">Trading</a>
+            <a href="#mlm" class="link link-hover">MLM System</a>
+            <a href="#pricing" class="link link-hover">Account Types</a>
+            <a href="#testimonials" class="link link-hover">Testimonials</a>
+            <a href="#contact" class="link link-hover">Support</a>
+        </nav>
+        <nav>
+            <div class="grid grid-flow-col gap-4">
+                <a class="text-2xl hover:text-primary transition-colors">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a class="text-2xl hover:text-primary transition-colors">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a class="text-2xl hover:text-primary transition-colors">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a class="text-2xl hover:text-primary transition-colors">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
+        </nav>
+        <aside>
+            <div class="flex items-center space-x-2 mb-4">
+                <i class="fas fa-chart-line text-primary text-2xl"></i>
+                <span class="text-2xl font-bold">Ditto Trading</span>
+            </div>
+            <p>Copyright © 2025 - All rights reserved by Ditto Trading Platform</p>
+            <p class="text-sm text-base-content/60">Professional Trading & Investment Solutions</p>
+        </aside>
+    </footer>
+
+    <!-- Demo Modal -->
+    <dialog id="demo_modal" class="modal">
+        <div class="modal-box w-11/12 max-w-5xl">
+            <form method="dialog">
+                <button class="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+            </form>
+            <h3 class="font-bold text-2xl mb-6 text-center">Ditto Trading Platform Demo</h3>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Trading Demo -->
+                <div class="bg-base-200 rounded-2xl p-6">
+                    <h4 class="text-xl font-bold mb-4 text-primary">Live Trading Interface</h4>
+                    <div class="bg-base-100 rounded-xl p-4 mb-4">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="font-semibold">XAUUSD</span>
+                            <span class="text-success text-sm">Live</span>
+                        </div>
+                        <div class="text-2xl font-bold text-success mb-2">$2,034.45</div>
+                        <div class="text-success text-sm mb-3">+12.34 (+0.61%)</div>
+                        <div class="h-16 bg-base-200 rounded relative overflow-hidden mb-3">
+                            <div class="chart-line absolute top-1/2 w-full"></div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button class="btn btn-success btn-sm">BUY</button>
+                            <button class="btn btn-error btn-sm">SELL</button>
+                        </div>
+                    </div>
+                    <p class="text-sm text-base-content/70">Real-time MetaAPI integration with 2-second equity updates</p>
+                </div>
+
+                <!-- MLM Demo -->
+                <div class="bg-base-200 rounded-2xl p-6">
+                    <h4 class="text-xl font-bold mb-4 text-secondary">MLM Network System</h4>
+                    <div class="bg-base-100 rounded-xl p-4 mb-4">
+                        <div class="text-center mb-4">
+                            <div class="w-12 h-12 bg-secondary/20 rounded-full flex items-center justify-center mx-auto mb-2">
+                                <i class="fas fa-user text-secondary"></i>
+                            </div>
+                            <div class="font-semibold">Your Network</div>
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 text-center text-sm">
+                            <div>
+                                <div class="font-bold text-primary">Direct</div>
+                                <div class="text-base-content/70">$1,250</div>
+                            </div>
+                            <div>
+                                <div class="font-bold text-success">Level</div>
+                                <div class="text-base-content/70">$3,420</div>
+                            </div>
+                            <div>
+                                <div class="font-bold text-info">Binary</div>
+                                <div class="text-base-content/70">$2,180</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-base-content/70">8 income streams with automated commission calculations</p>
+                </div>
+            </div>
+
+            <div class="mt-6 text-center">
+                <p class="text-base-content/70 mb-4">Experience the full power of our professional trading and MLM platform</p>
+                <div class="flex gap-4 justify-center">
+                    <button class="btn btn-primary">Request Full Demo</button>
+                    <button class="btn btn-outline">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+        <form method="dialog" class="modal-backdrop">
+            <button>close</button>
+        </form>
+    </dialog>
+
+    <script>
+        // Prevent WebSocket connection attempts
+        window.addEventListener('error', function(e) {
+            if (e.message.includes('WebSocket') || e.message.includes('ws://')) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Hero animations
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(() => {
+                document.querySelector('.hero-title').classList.add('animate');
+                document.querySelector('.hero-subtitle').classList.add('animate');
+                document.querySelector('.hero-buttons').classList.add('animate');
+            }, 500);
+        });
+
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('show');
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('mobile-menu');
+            const btn = document.getElementById('mobile-menu-btn');
+            if (!menu.contains(e.target) && !btn.contains(e.target)) {
+                menu.classList.remove('show');
+            }
+        });
+
+        // Feature cards animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all feature cards
+        document.querySelectorAll('.feature-card').forEach((card, index) => {
+            card.style.transitionDelay = `${index * 0.1}s`;
+            observer.observe(card);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Demo modal handler
+        document.querySelectorAll('a[href="#demo"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('demo_modal').showModal();
+            });
+        });
+
+        // Button handlers for demo and trading
+        document.querySelectorAll('button').forEach(button => {
+            const text = button.textContent.toLowerCase();
+            if (text.includes('try demo') || text.includes('try live trading')) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.getElementById('demo_modal').showModal();
+                });
+            } else if (text.includes('start chat') || text.includes('send email') || text.includes('call now')) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('Support feature coming soon! Please contact us at support@dittotrading.com');
+                });
+            } else if (text.includes('get started') || text.includes('start professional') || text.includes('go enterprise') || text.includes('open live account')) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('Account registration coming soon! Please contact us at sales@dittotrading.com');
+                });
+            } else if (text.includes('request full demo') || text.includes('contact sales')) {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('Demo request received! Our team will contact you within 24 hours at sales@dittotrading.com');
+                });
+            }
+        });
+
+        // Theme switcher (optional)
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        }
+
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+</body>
+</html>
